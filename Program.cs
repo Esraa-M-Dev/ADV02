@@ -23,6 +23,18 @@
                 action(product);
             }
         }
+        static List<string> TransformProducts( List<Product> products, Func<Product, string> transform)
+        {
+
+            List<string> result = new List<string>();
+
+            foreach (Product product in products)
+            {
+                result.Add(transform(product));
+            }
+
+            return result;
+        }
         static void Main(string[] args)
         {
             List<Product> catalog = new()
@@ -85,15 +97,35 @@
             //use Action delegate because it recieves product and not return value 
             // Short Report
 
-          //Console.WriteLine("Short Report:");
+            //Console.WriteLine("Short Report:");
             //PrintReport(catalog,product => Console.WriteLine($"{product.Name} - ${product.Price}"));
 
 
             //Detailed Report
 
             //Console.WriteLine("Detailed Report:");
-           // PrintReport(catalog,product => Console.WriteLine($"[{product.Category}] {product.Name} | Price: ${product.Price} | Stock: {product.Stock}"));
+            // PrintReport(catalog,product => Console.WriteLine($"[{product.Category}] {product.Name} | Price: ${product.Price} | Stock: {product.Stock}"));
             #endregion
+            #region Transform products
+            //func used because it recieve product and return string 
+            //scenario 3:string
+            //List<string> summary = TransformProducts( catalog, product => $"{product.Name} (${product.Price})");
+            //Console.WriteLine("Summary List:");
+            //foreach (string item in summary)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //scenario 4:label
+            //List<string> priceLabels = TransformProducts(catalog, product => $"{product.Name}: {(product.Price > 100 ? "Expensive!" : "Affordable")}");
+
+            //Console.WriteLine("Price Labels:");
+
+            //foreach (string item in priceLabels)
+            //{
+            //    Console.WriteLine(item);
+           // }
+            #endregion
+
 
 
         }
