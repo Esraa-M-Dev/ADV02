@@ -35,6 +35,21 @@
 
             return result;
         }
+        static List<Product> FilterProducts( List<Product> products, Predicate<Product> condition)
+        {
+
+            List<Product> result = new List<Product>();
+
+            foreach (Product product in products)
+            {
+                if (condition(product))
+                {
+                    result.Add(product);
+                }
+            }
+
+            return result;
+        }
         static void Main(string[] args)
         {
             List<Product> catalog = new()
@@ -123,7 +138,17 @@
             //foreach (string item in priceLabels)
             //{
             //    Console.WriteLine(item);
-           // }
+            // }
+            #endregion
+            #region Filter products
+            // Predicate<Product> is used because the condition takes a Product and returns bool
+            //List<Product> lowStockProducts = FilterProducts(catalog, product => product.Stock < 20);
+            //Console.WriteLine("Low Stock Alerts:");
+
+            //foreach (Product product in lowStockProducts)
+            //{
+            //    Console.WriteLine( $"[LOW STOCK] {product.Name}: only {product.Stock} left!" );
+            //}
             #endregion
 
 
