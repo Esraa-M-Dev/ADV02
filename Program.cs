@@ -16,6 +16,13 @@
 
             return result;
         }
+        static void PrintReport( List<Product> products, Action<Product> action)
+        {
+            foreach (Product product in products)
+            {
+                action(product);
+            }
+        }
         static void Main(string[] args)
         {
             List<Product> catalog = new()
@@ -31,48 +38,63 @@
                 new Product{Id=9,Name="Head Phones",Category="Electronics",Price=150,Stock=40},
                 new Product{Id=10,Name="Jacket",Category="Clothing",Price=120,Stock=15},
             };
-            List<Product> electronics = SearchProducts( catalog, product => product.Category == "Electronics");
+            #region Search products
+            //List<Product> electronics = SearchProducts( catalog, product => product.Category == "Electronics");
 
-            Console.WriteLine("Electronics Products:");
+            //Console.WriteLine("Electronics Products:");
 
-            foreach (Product product in electronics)
-            {
-                Console.WriteLine($"{product.Name} - ${product.Price} - Stock: {product.Stock}" );
-            }
-
-
-            
-            List<Product> cheapProducts = SearchProducts(catalog,product => product.Price < 50);
-
-            Console.WriteLine("Products Cheaper Than $50:");
-
-            foreach (Product product in cheapProducts)
-            {
-                Console.WriteLine( $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
-            }
+            //foreach (Product product in electronics)
+            //{
+            //    Console.WriteLine($"{product.Name} - ${product.Price} - Stock: {product.Stock}" );
+            //}
 
 
-            
-            List<Product> inStockProducts = SearchProducts( catalog,product => product.Stock > 0 );
 
-            Console.WriteLine("Products In Stock:");
+            //List<Product> cheapProducts = SearchProducts(catalog,product => product.Price < 50);
 
-            foreach (Product product in inStockProducts)
-            {
-                Console.WriteLine(  $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
-            }
+            //Console.WriteLine("Products Cheaper Than $50:");
+
+            //foreach (Product product in cheapProducts)
+            //{
+            //    Console.WriteLine( $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
+            //}
 
 
-            
-            List<Product> clothingUnder100 = SearchProducts(catalog,product => product.Category == "Clothing" && product.Price < 100 );
 
-            Console.WriteLine("Clothing Products Under $100:");
+            //List<Product> inStockProducts = SearchProducts( catalog,product => product.Stock > 0 );
 
-            foreach (Product product in clothingUnder100)
-            {
-                Console.WriteLine( $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
-            }
-        
+            //Console.WriteLine("Products In Stock:");
+
+            //foreach (Product product in inStockProducts)
+            //{
+            //    Console.WriteLine(  $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
+            //}
+
+
+
+            //List<Product> clothingUnder100 = SearchProducts(catalog,product => product.Category == "Clothing" && product.Price < 100 );
+
+            //Console.WriteLine("Clothing Products Under $100:");
+
+            //foreach (Product product in clothingUnder100)
+            //{
+            //    Console.WriteLine( $"{product.Name} - ${product.Price} - Stock: {product.Stock}");
+            //} 
+            #endregion
+            #region Print Reports
+            //use Action delegate because it recieves product and not return value 
+            // Short Report
+
+          //Console.WriteLine("Short Report:");
+            //PrintReport(catalog,product => Console.WriteLine($"{product.Name} - ${product.Price}"));
+
+
+            //Detailed Report
+
+            //Console.WriteLine("Detailed Report:");
+           // PrintReport(catalog,product => Console.WriteLine($"[{product.Category}] {product.Name} | Price: ${product.Price} | Stock: {product.Stock}"));
+            #endregion
+
 
         }
     }
